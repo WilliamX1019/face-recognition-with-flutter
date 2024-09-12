@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path/path.dart' as p;
@@ -118,32 +117,32 @@ class DatabaseHelper {
       await dbHelper.init(); // init metodunu burada çağır
 
       // Firestore'dan verileri al
-      await FirebaseFirestore.instance
-          .collection('students')
-          .get()
-          .then((querySnapshot) async {
-        // Firestore verilerini SQLite veritabanına ekle
-        querySnapshot.docs.forEach((doc) async {
-          Map<String, dynamic> row = {
-            DatabaseHelper.columnStdNumber: doc["number"],
-            DatabaseHelper.columnFirstName: doc["name"],
-            DatabaseHelper.columnLastName: doc["surname"],
-            DatabaseHelper.columnEmbedding: json.encode(doc["embedding"]),
-          };
+      // await FirebaseFirestore.instance
+      //     .collection('students')
+      //     .get()
+      //     .then((querySnapshot) async {
+      //   // Firestore verilerini SQLite veritabanına ekle
+      //   querySnapshot.docs.forEach((doc) async {
+      //     Map<String, dynamic> row = {
+      //       DatabaseHelper.columnStdNumber: doc["number"],
+      //       DatabaseHelper.columnFirstName: doc["name"],
+      //       DatabaseHelper.columnLastName: doc["surname"],
+      //       DatabaseHelper.columnEmbedding: json.encode(doc["embedding"]),
+      //     };
 
-          if (await dbHelper.queryRowCountWhere(
-                  DatabaseHelper.columnStdNumber, doc["number"]) >
-              0) {
-            // aynı numaraya sahip kayıt zaten veritabanında var.
-            message = "Aynı numaraya sahip kayıt zaten veritabanında mevcut.";
-            print(message);
-          } else {
-            await dbHelper.insert(row);
-            message = 'Senkronize edildi';
-            print(message);
-          }
-        });
-      });
+      //     if (await dbHelper.queryRowCountWhere(
+      //             DatabaseHelper.columnStdNumber, doc["number"]) >
+      //         0) {
+      //       // aynı numaraya sahip kayıt zaten veritabanında var.
+      //       message = "Aynı numaraya sahip kayıt zaten veritabanında mevcut.";
+      //       print(message);
+      //     } else {
+      //       await dbHelper.insert(row);
+      //       message = 'Senkronize edildi';
+      //       print(message);
+      //     }
+      //   });
+      // });
 
       _toast(message);
     } catch (error) {

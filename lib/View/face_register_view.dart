@@ -60,12 +60,12 @@ class _HomePageState extends State<RegistrationScreen> {
   }
 
   List<Face> faces = [];
-
+  //人脸检测
   doFaceDetection() async {
     InputImage inputImage = InputImage.fromFile(_image!);
     image = await _image?.readAsBytes();
     image = await decodeImageFromList(_image!.readAsBytesSync());
-
+  // 检测人脸个数
     faces = await faceDetector.processImage(inputImage);
 
     for (Face face in faces) {

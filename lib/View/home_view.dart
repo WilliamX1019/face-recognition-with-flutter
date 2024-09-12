@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import '../Model/db.dart';
 import 'face_match_view.dart';
 import 'face_register_view.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -47,19 +46,7 @@ class _HomePageState extends State<HomeScreen> {
         });
   }
 
-  fetchFromFirebase() async {
-    FirebaseFirestore.instance
-        .collection('students')
-        .get()
-        .then((QuerySnapshot querySnapshot) => {
-              querySnapshot.docs.forEach((doc) {
-                print(doc["name"]);
-                print(doc["surname"]);
-                print(doc["number"]);
-                print(doc["embedding"]);
-              })
-            });
-  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -46,10 +46,6 @@ dependencies:
   google_mlkit_commons: ^0.6.1
   camera: ^0.10.5+8
   rive: ^0.12.4
-  firebase_core: ^2.24.2
-  google_sign_in: ^6.2.1
-  firebase_auth: ^4.16.0
-  cloud_firestore: ^4.14.0
   fluttertoast: ^8.2.4
 
 dev_dependencies:

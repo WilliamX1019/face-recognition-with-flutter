@@ -5,8 +5,6 @@ import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 import '../Model/db.dart';
 import 'face_register.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Recognizer {
   late Interpreter interpreter;
@@ -76,35 +74,35 @@ class Recognizer {
 
   void registerFaceFirebase(String number, String name, String surname,
       List<double> embedding) async {
-    await Firebase.initializeApp();
-    CollectionReference students =
-        FirebaseFirestore.instance.collection('students');
-    students.add({
-      'number': number,
-      'name': name,
-      'surname': surname,
-      'embedding': embedding,
-    });
+    // await Firebase.initializeApp();
+    // CollectionReference students =
+    //     FirebaseFirestore.instance.collection('students');
+    // students.add({
+    //   'number': number,
+    //   'name': name,
+    //   'surname': surname,
+    //   'embedding': embedding,
+    // });
   }
 
   Future<void> fetchDataFromFirebase() async {
     // Firebase'den veri çekme işlemi burada yapılır.
 
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('students').get();
+    // QuerySnapshot querySnapshot =
+    //     await FirebaseFirestore.instance.collection('students').get();
 
-    // Correctly cast the data to List<Map<String, dynamic>>
-    List<Map<String, dynamic>> firebaseData = querySnapshot.docs
-        .map((doc) => doc.data() as Map<String, dynamic>)
-        .toList();
-    final justNamesAndEmbeddings = firebaseData
-        .map((e) => {
-              'name': e['name'],
-              'embedding': e['embedding'],
-            })
-        .toList();
+    // // Correctly cast the data to List<Map<String, dynamic>>
+    // List<Map<String, dynamic>> firebaseData = querySnapshot.docs
+    //     .map((doc) => doc.data() as Map<String, dynamic>)
+    //     .toList();
+    // final justNamesAndEmbeddings = firebaseData
+    //     .map((e) => {
+    //           'name': e['name'],
+    //           'embedding': e['embedding'],
+    //         })
+    //     .toList();
 
-    print(justNamesAndEmbeddings.last['name']);
+    // print(justNamesAndEmbeddings.last['name']);
   }
 
   Future<void> loadModel() async {

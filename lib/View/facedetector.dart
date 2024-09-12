@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mlkit_face_detection/google_mlkit_face_detection.dart';
 
 import 'detector_view.dart';
-
+//
 class FaceDetectorView extends StatefulWidget {
   const FaceDetectorView({super.key});
 
@@ -49,7 +49,7 @@ class _FaceDetectorViewState extends State<FaceDetectorView> {
     if (_isBusy) return;
     _isBusy = true;
     setState(() {
-      _text = '';
+      _text = 'aaaaaaaa';
     });
     final faces = await _faceDetector.processImage(inputImage);
     if (inputImage.metadata?.size != null &&
